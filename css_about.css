@@ -1,0 +1,15 @@
+h1 {
+    padding-top : 100px;
+    margin-left : 50%;
+    position : relative;
+    font-color: white;
+    font-size : 20px;
+    background-color: black;
+}
+p{
+    margin-left : 50%;
+    padding-top : 10px;
+    font-color : black;
+    background-color: beige;
+
+}
