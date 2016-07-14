@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'debug_toolbar',
+    'webtoon',
 ]
 
 MIDDLEWARE_CLASSES = [
