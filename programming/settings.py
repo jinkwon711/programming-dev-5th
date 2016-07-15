@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blog',
     'debug_toolbar',
     'webtoon',
+    'pokemon',
 ]
 
 MIDDLEWARE_CLASSES = [
