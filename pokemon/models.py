@@ -12,11 +12,11 @@ def lnglat_validator(lnglat):
 class Capture(models.Model):
     players = models.ForeignKey('Player',)
     pokemons = models.ForeignKey('Pokemon')
-    places = models.ManyToManyField('Place')
+    places = models.ForeignKey('Place')
     captured_time= models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return "captured_by: " + self.captured_time.strftime('%Y-%m-%d %H:%M:%S')
+        return "{} captured_by {} at {} ".format(self.pokemons.name, self.players.name, self.places.name)
 
 
 class Pokemon(models.Model):

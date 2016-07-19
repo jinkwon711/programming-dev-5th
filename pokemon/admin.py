@@ -13,11 +13,12 @@ class PlaceAdmin(admin.ModelAdmin):
 class PlayerAdmin(admin.ModelAdmin):
     list_display = ["name"]
 
-class CaptureAdmin(admin.ModelAdmin):
-    list_display = ["pokemons","players","captured_time"]
+# class CaptureAdmin(admin.ModelAdmin):
+#     list_display = ["pokemons","players","captured_time"]
 
 # Register your models here.
 admin.site.register(Pokemon,PokemonAdmin)
 admin.site.register(Place, PlaceAdmin)
 admin.site.register(Player, PlayerAdmin)
-admin.site.register(Capture, CaptureAdmin)
+admin.site.register(Capture)
+# admin.site.register(Capture,CaptureAdmin)
