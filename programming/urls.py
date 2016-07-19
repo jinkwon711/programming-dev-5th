@@ -24,6 +24,11 @@ urlpatterns = [
     url(r'^$', views.post_list),
     url(r'^about/', views.about),
     url(r'^gallery/',views.gallery),
+    url(r'^sum/(?P<x>\d+)/(?P<y>\d+)/(?P<z>\d+)/$',views.mysum),
+    url(r'^sum/(?P<x>\d+)/(?P<y>\d+)/$',views.mysum),
+    url(r'^sum/(?P<x>\d+)/$',views.mysum),
+    url(r'^sum2/(?P<x>[\d/]+)/$', views.mysum2),
+
 ]
 
 if settings.DEBUG:
