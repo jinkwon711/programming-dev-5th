@@ -124,9 +124,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 #template location
-TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(BASE_DIR),"programming", "static", "templates"),
-    )
+# TEMPLATE_DIRS = (
+#     os.path.join(os.path.dirname(BASE_DIR),"programming", "static", "templates"),
+#     )
 
 if DEBUG:
     MEDIA_URL  = '/media/'

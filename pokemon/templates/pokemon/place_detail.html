@@ -1,0 +1,21 @@
+{% extends 'pokemon/pokemon_base.html' %}
+
+{% block pokemon %}
+
+<table>
+
+<tr>
+    <td>
+        장소 이름 :{{place_detail.name}}
+    </td>
+</tr>
+<tr>
+
+    <td>
+        장소 위치: {{place_detail.lnglat}}
+    </td>
+
+</tr>
+</table>
+
+{% endblock %}

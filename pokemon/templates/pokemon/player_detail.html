@@ -1,0 +1,28 @@
+{% extends 'pokemon/pokemon_base.html' %}
+
+{% block pokemon %}
+<table>
+
+<tr>
+    <td>트레이너 이름 :{{player_detail.name}}</td>
+</tr>
+    <td>트레이너 국적 :{{player_detail.nationality}}</td>
+</table>
+<table>
+<tr>
+    <td>
+        보유포켓몬:
+    </td>
+        {% for capture in player_captured %}
+    <td>
+            {{capture.pokemons.name}}
+    </td>
+        {% endfor %}
+
+    <!-- {{player_captured.pokemons.values}} -->
+
+    </td>
+</tr>
+</table>
+
+{% endblock %}

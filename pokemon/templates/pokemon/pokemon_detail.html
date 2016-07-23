@@ -1,0 +1,20 @@
+{% extends 'pokemon/pokemon_base.html' %}
+
+{% block pokemon %}
+<table>
+
+<tr>
+    <td>
+        포켓몬 이름 :{{pokemon_detail.name}}
+    </td>
+</tr>
+<tr>
+
+    <td>
+        포켓몬 타입: {{pokemon_detail.pokemon_type}}
+    </td>
+
+</tr>
+</table>
+
+{% endblock %}

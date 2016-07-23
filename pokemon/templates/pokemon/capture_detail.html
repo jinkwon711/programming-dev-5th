@@ -1,0 +1,35 @@
+{% extends 'pokemon/pokemon_base.html' %}
+
+{% block pokemon %}
+
+<table>
+
+<tr>
+    <td>
+        트레이너 이름 :{{capture_detail.players.name}}
+    </td>
+</tr>
+<tr>
+
+    <td>
+        포켓몬 이름: {{capture_detail.pokemons.name}}
+    </td>
+
+</tr>
+<tr>
+
+    <td>
+        잡힌 장소: {{capture_detail.places.name}}
+    </td>
+
+</tr>
+<tr>
+
+    <td>
+        잡힌 시각: {{capture_detail.captured_time}}
+    </td>
+
+</tr>
+</table>
+
+{% endblock %}

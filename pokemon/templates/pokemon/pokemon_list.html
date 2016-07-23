@@ -1,0 +1,16 @@
+{% extends 'pokemon/pokemon_base.html' %}
+
+{% block pokemon %}
+<h3> 자세한 정보를 보고싶다면 포켓몬 이름을 눌러주세요</h3>
+
+<table>
+{% for pokemon in pokemon_list %}
+<tr>
+    <td>
+    <a href='/pokemon/{{pokemon.pk}}/'>{{ pokemon.name }}</a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

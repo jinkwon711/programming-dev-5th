@@ -1,0 +1,14 @@
+{% extends 'pokemon/pokemon_base.html' %}
+
+{% block pokemon %}
+<h2> 아래는 플레이어들의 정보입니다. 세부정보를 보시려면 플레이어 이름을 눌러주시기 바랍니다.</h2>
+
+<table>
+{% for player in player_list %}
+<tr>
+    <td><a href="/player/{{player.pk}}/"> {{ player.name }}</a></td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

@@ -1,12 +1,7 @@
+{% extends 'blog/base.html' %}
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% block main %}
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko"  xml:lang="ko">
-<meta http-equiv="Content-Type" Content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>권진환-알아보기</title>
-<head>
 <style>
 body{
 
@@ -23,18 +18,6 @@ body{
 
 <div class="centeredauto">
   <div class="item">
-
-
-<div class="container">
-    <div class="jumbotron">
-        <h1>Jin Hwan Kwon</h1>
-        <hr>
-        <div class ="button">
-          <input type ="button"  value="more info" >
-        </div>
-        <p>This page is about Jin, Jin is student from SNU who majors in economics. He is insterested in computer engineering. 지금 진환은 파이썬 배우고있어요. 파이썬 하나추가요?!</p>
-    </div>
-</div>
 
 <p>
 <h1 align="center">권진환의 홈페이지에 오신것을 환영합니다!</h1>
@@ -81,5 +64,5 @@ body{
  </div>
 </div>
 
-</body>
-</html>
+{% endblock %}
+

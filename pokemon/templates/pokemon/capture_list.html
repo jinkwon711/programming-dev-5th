@@ -1,0 +1,17 @@
+{% extends 'pokemon/pokemon_base.html' %}
+
+{% block pokemon %}
+
+<h3> 자세한 정보를 보고싶다면 해당 포획 사건을 눌러주세요</h3>
+
+<table>
+{% for capture in capture_list %}
+<tr>
+    <td>
+    <a href='/capture/{{capture.pk}}/'>{{ capture}}</a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
