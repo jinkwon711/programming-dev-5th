@@ -1,0 +1,42 @@
+{% extends 'blog/base.html' %}
+
+{% block main %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>P.rogramming</h1>
+        <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
+    </div>
+</div>
+
+
+<table>
+
+<tr>
+    <td>글 제목 :{{post.title}}</td>
+</tr>
+    <td>글 내용 :{{post.content}}</td>
+</tr>
+    <td>    <h4>태그목록</h4>
+<br>{% for tag in tags %} {{tag.category}} {% endfor %}
+
+    </td>
+</table>
+
+<h4>댓글목록</h4>
+<table>
+{% for comment in comment_list %}
+<tr>
+    <td>
+        {{comment.message}} by {{comment.author}}<a class="btn btn-default" href='{% url "blog:comment_edit" post.pk comment.pk %}' role="button">댓글수정</a>
+</tr>
+{% endfor %}
+</table>
+<a href="{% url 'blog:comment_new' post.pk %}">댓글쓰기</a>
+</table>
+<hr>
+<a class="btn btn-default" role="button" href="{% url 'blog:post_edit'  post.pk %}">글 수정</a>
+
+
+
+{% endblock %}

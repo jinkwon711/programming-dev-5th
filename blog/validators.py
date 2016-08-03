@@ -1,4 +1,7 @@
 import re
+import requests
+import xmltodict
+from django.conf import settings
 from django.forms import ValidationError
 from django.utils.deconstruct import deconstructible
 
@@ -41,7 +44,40 @@ def phone_number_validator(value):
     if not re.match(r'^01[016789][1-9]\d{6,7}$',value):
         raise ValidationError("전화번호를 입력해 주세요")
 
+@deconstructible
+class ZipCodeValidator2(object):
+    '  우편번호 체계안내 : http://www.koreapost.go.kr/kpost/sub/subpage.jsp?contId=010101040100'
+    def __init__(self, is_check_exist = True):
+        self.is_check_exist = is_check_exist
+    def __call__(self, zip_code):
+        if not re.match(r'^\d{5}$', zip_code) and not re.match(r'^\d{3}-?\d{3}$', zip_code):
+            raise ValidationError("우편번호는 5자리 혹은 3자리-3자리로 써주시기 바랍니다.")
+        # if not len(zip_code) == 5:
+        #         z1,z2 = zip_code.split("-")
+        #         zip_code = z1+z2
 
+        if self.is_check_exist:
+            self.check_exist(zip_code)
+
+    def check_exist(self, zip_code):
+        '우체국 open api'
+        target = 'postNew'
+        if len(zip_code) != 5:
+            target = "postRoad"
+
+        params = {
+            'regkey' : settings.EPOST_API_KEY,
+            'target' : target,
+            'query': zip_code.replace("-",""),
+        }
+        xml = requests.get('http://biz.epost.go.kr/KpostPortal/openapi', params=params).text
+        response = xmltodict.parse(xml)
+        try:
+            error = response['error']
+        except KeyError:
+            pass
+        else:
+            raise ValidationError('[{error_code}] {message}'.format(**error))
 
 def ZipCodeValidator(value):
     if not re.match(r'^\d{3}-\d{3}$', value) and not re.match(r'^\d{5}$', value):

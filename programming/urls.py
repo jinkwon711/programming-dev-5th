@@ -13,22 +13,29 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from blog import views
+from django.shortcuts import redirect
 from pokemon import views as pokemon_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.post_list),
-    url(r'^about/', views.about),
-    url(r'^gallery/',views.gallery),
-    url(r'^sum/(?P<x>\d+)/(?P<y>\d+)/(?P<z>\d+)/$',views.mysum),
-    url(r'^sum/(?P<x>\d+)/(?P<y>\d+)/$',views.mysum),
-    url(r'^sum/(?P<x>\d+)/$',views.mysum),
-    url(r'^sum2/(?P<x>[\d/]+)/$', views.mysum2),
+    url(r'^$', lambda request: redirect('/blog/')),
+    #blog
+    url(r'^blog/', include('blog.urls', namespace='blog')),
+
+
+
+
+    #calculation
+
+
+
+
+
+    #pokemon
     url(r'^pokemon_main/$', pokemon_views.pokemon_main),
     url(r'^pokemon/$', pokemon_views.pokemon_list),
     url(r'^pokemon/(?P<pk>\d+)/$', pokemon_views.pokemon_detail),
@@ -38,7 +45,7 @@ urlpatterns = [
     url(r'^capture/(?P<pk>\d+)/$', pokemon_views.capture_detail),
     url(r'^place/$', pokemon_views.place_list),
     url(r'^place/(?P<pk>\d+)/$', pokemon_views.place_detail),
-    url(r'^zipcode/$', views.zipcode, name = 'zipcode'),
+
     # url(r'^zipcode_exist/$', views.zipcode_exist, name= 'zipcodecheck'),
 
 ]

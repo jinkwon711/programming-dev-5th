@@ -135,3 +135,6 @@ if DEBUG:
     STATICFILES_DIRS=(
         os.path.join(os.path.dirname(BASE_DIR),"programming","static", "static"),
         )
+
+
+EPOST_API_KEY = os.environ.get('EPOST_API_KEY','4315602ea6a417fc81470021546634' )

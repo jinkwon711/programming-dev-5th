@@ -12,8 +12,6 @@ from .customfield import *
 #     except:
 #         raise ValidationError
 # Create your models here.
-
-
 class Post(models.Model):
     title = models.CharField(max_length=100,  validators = [MaxLengthValidator(100)] ,verbose_name ="제목")
     content = models.TextField(help_text="Markdown 문법을 써주세요.", validators = [MinLengthValidator(4)])
@@ -23,6 +21,12 @@ class Post(models.Model):
     test_field = models.IntegerField(default=10 )
     def __str__(self):
         return "post: "+self.title
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post)
+    message = models.TextField()
+    author = models.CharField(max_length=20)
 
 class Contact(models.Model):
     name = models.CharField(max_length = 20)
@@ -51,6 +55,12 @@ class ZipCode(models.Model):
 
 
 
+class Zip_Code(models.Model):
+    zip_code = models.CharField(max_length =7)
+    road = models.CharField(max_length =20)
+    dong = models.CharField(max_length =20)
+    gu = models.CharField(max_length =20)
+    city = models.CharField(max_length =20)
 
 
 

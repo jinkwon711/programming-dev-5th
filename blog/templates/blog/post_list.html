@@ -9,6 +9,22 @@
     </div>
 </div>
 
+<h2> 블로그 글 목록입니다..</h2>
+
+<table>
+{% for post in post_list %}
+<tr>
+    <td><a href="{% url 'blog:post_detail' post.pk %}"> {{ post.title }}</a></td>
+</tr>
+{% endfor %}
+</table>
+
+<br>
+<a class='btn btn-default' role = "button" href="{% url 'blog:post_new' %}">새글쓰기</a>
+
+
+
+
 <div class="footer">
     <div class="container">
         <p class="text-muted">Place sticky footer content here.</p>
