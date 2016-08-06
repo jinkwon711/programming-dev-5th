@@ -5,16 +5,23 @@
 <div class="container">
     <div class="jumbotron">
         <h1>P.rogramming</h1>
-        <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
+        <p>Hi. this is Jin's blog</p>
     </div>
 </div>
 
 <h2> 블로그 글 목록입니다..</h2>
-
 <table>
 {% for post in post_list %}
 <tr>
-    <td><a href="{% url 'blog:post_detail' post.pk %}"> {{ post.title }}</a></td>
+{% if post.image %}
+    <td>
+    <div class ="thumbnail">
+    <img src="{{post.image.url}}" class = 'img-responsive' >
+    </td>
+    </div>
+{% endif %}
+</div>
+    <td><a href="{% url 'blog:post_detail' post.pk %}"> {{ post.title }} </a></td>
 </tr>
 {% endfor %}
 </table>

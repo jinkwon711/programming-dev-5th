@@ -14,7 +14,7 @@ import re
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'content','tags', 'lnglat']
+        fields = ['title', 'content','tags', 'lnglat', 'image']
 
 class ZipCodeForm(forms.ModelForm):
     class Meta:

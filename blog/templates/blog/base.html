@@ -6,6 +6,7 @@
 <title>P.rogramming Blog</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <style>
+
 body {
     padding-top: 60px;
 }
@@ -28,6 +29,12 @@ body {
   align-self: right;
   color:red;
 }
+.alert-debug{
+  background-color: #eeeeee;
+  border-color: #eeeeee;
+  color: #333;
+/* 해당 디버그는 기본 부트스트랩에 없음*/
+}
 </style>
 </head>
 <body>
@@ -37,15 +44,23 @@ body {
         <div class="navbar-header">
             <a class="navbar-brand" href="/#/">P.rogramming Django</a>
             <div class="navbar-right">
-              <a class="navbar-brand" href="/about/" >About.Me</a>
+              <a class="navbar-brand" href="/blog/aboutme" >About.Me</a>
               <a class='navbar-brand' href="/pokemon_main">Pokemon</a>
-              <a class="navbar-brand" href="/gallery/">Gallery.Me</a>
-              <a class="navbar-brand" href="/zipcode/">ZipCode</a>
+              <a class="navbar-brand" href="/blog/gallery/">Gallery.Me</a>
+              <a class="navbar-brand" href="/blog/zipcode/">ZipCode</a>
 
             </div>
         </div>
     </div>
 </div>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }} </li>
+    {% endfor %} </ul>
+{% endif %}
+
 {% block main %}
 {% endblock %}
 

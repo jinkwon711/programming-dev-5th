@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as messages_constants
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -123,18 +124,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-#template location
-# TEMPLATE_DIRS = (
-#     os.path.join(os.path.dirname(BASE_DIR),"programming", "static", "templates"),
-#     )
+MEDIA_URL = '/media/'
 
-if DEBUG:
-    MEDIA_URL  = '/media/'
-    STATIC_ROOT= os.path.join(os.path.dirname(BASE_DIR), "programming", "static", "static-only")
-    MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "programming","static", "media")
-    STATICFILES_DIRS=(
-        os.path.join(os.path.dirname(BASE_DIR),"programming","static", "static"),
-        )
+STATIC_ROOT= os.path.join(os.path.dirname(BASE_DIR), "programming", "static", "static-only")
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "programming","static", "media")
+STATICFILES_DIRS=(
+    os.path.join(os.path.dirname(BASE_DIR),"programming","static", "static"),
+    )
 
 
 EPOST_API_KEY = os.environ.get('EPOST_API_KEY','4315602ea6a417fc81470021546634' )
+
+# message tags
+
+# MESSAGE_TAGS = {message_constants.ERROR: 'danger'}

@@ -1,9 +1,16 @@
-import re
+import os
+from uuid import uuid4
+from django.utils import timezone
 from django.db import models
 from django.forms import ValidationError
 from django.utils import timezone
 from .validators import *
 from .customfield import *
+from django.core.urlresolvers import reverse
+from django.core.files import File
+from django.db.models.signals import pre_save
+from blog.pil_image import square_image, thumbnail
+
 
 # def URL_validator(self):
 #     val=URLValidator(verify_exists=True)
@@ -12,6 +19,13 @@ from .customfield import *
 #     except:
 #         raise ValidationError
 # Create your models here.
+
+def random_name_upload_to(instance, filename):
+    name = uuid4().hex
+    extension = os.path.splitext(filename)[-1].lower()
+    return os.path.join(name[:3], name[3:6], name[6:] + extension)
+
+
 class Post(models.Model):
     title = models.CharField(max_length=100,  validators = [MaxLengthValidator(100)] ,verbose_name ="제목")
     content = models.TextField(help_text="Markdown 문법을 써주세요.", validators = [MinLengthValidator(4)])
@@ -19,8 +33,31 @@ class Post(models.Model):
     lnglat = models.CharField(max_length=50,validators=[lnglat_validator], help_text="경도,위도 포맷으로 입력")
     created_at = models.DateTimeField(default=timezone.now)
     test_field = models.IntegerField(default=10 )
+    image = models.ImageField(upload_to=random_name_upload_to, blank = True)
+
+
     def __str__(self):
-        return "post: "+self.title
+        return "post: " + self.title
+
+    def get_absolute_url(self):
+        return reverse('blog:post_detail', args=[self.pk])
+
+    @property
+    def lat(self):
+        return self.lnglat.split(',')[1]
+
+    @property   #변수인것처럼 쓰이면 함수가 호출되게하는것.
+    def lng(self):
+        return self.lnglat.split(',')[0]
+def pre_on_post_save(sender, **kwargs):
+    post = kwargs['instance']
+    if post.image:
+        max_width = 300
+        if post.image.width > max_width or post.image.height > max_width:
+            processed_file = thumbnail(post.image.file, max_width, max_width)
+            # processed_file = square_image(post.image.file, max_width)
+            post.image.save(post.image.name, File(processed_file))
+pre_save.connect(pre_on_post_save, sender=Post)
 
 
 class Comment(models.Model):
