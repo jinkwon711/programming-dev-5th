@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from .models import ZipCode, Post, Comment, Tag
 from blog.forms import *
-from blog.pil_image import thumbnail, square_image
+from programming.pil_image import thumbnail, square_image
 from django.core.files import File
 from django.db.models.signals import pre_save
 

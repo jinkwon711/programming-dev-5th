@@ -25,4 +25,4 @@ class ZipCodeForm(forms.ModelForm):
 class CommentModelForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['message', 'author']
+        fields = ['message', 'author', 'Jall']

@@ -23,19 +23,10 @@ from pokemon import views as pokemon_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', lambda request: redirect('/blog/')),
-    #blog
+    # blog
     url(r'^blog/', include('blog.urls', namespace='blog')),
 
-
-
-
-    #calculation
-
-
-
-
-
-    #pokemon
+    # pokemon
     url(r'^pokemon_main/$', pokemon_views.pokemon_main),
     url(r'^pokemon/$', pokemon_views.pokemon_list),
     url(r'^pokemon/(?P<pk>\d+)/$', pokemon_views.pokemon_detail),

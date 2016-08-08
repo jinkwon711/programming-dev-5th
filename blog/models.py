@@ -9,7 +9,7 @@ from .customfield import *
 from django.core.urlresolvers import reverse
 from django.core.files import File
 from django.db.models.signals import pre_save
-from blog.pil_image import square_image, thumbnail
+from programming.pil_image import square_image, thumbnail
 
 
 # def URL_validator(self):
@@ -22,7 +22,9 @@ from blog.pil_image import square_image, thumbnail
 
 def random_name_upload_to(instance, filename):
     name = uuid4().hex
+    # 랜덤으로 16진수의 32자 숫자 생성.
     extension = os.path.splitext(filename)[-1].lower()
+    # 확장자 구하는거 .로 스플릿해서 뒤에서 첫번쨰꺼
     return os.path.join(name[:3], name[3:6], name[6:] + extension)
 
 
@@ -52,10 +54,17 @@ class Post(models.Model):
 def pre_on_post_save(sender, **kwargs):
     post = kwargs['instance']
     if post.image:
+
+        # post.image = 이미지 저장경로
+        # post.image.name = 이미지 파일명 확장자 포
+        # post.image.path = 이미지 저장 절대경로
+        # post.image.url = 이미지 URL
+        # post.image.file = 지정 경로에 대한 파일 오브젝트,
+        # post.image.width,height = 이미지 필드만됨.
         max_width = 300
         if post.image.width > max_width or post.image.height > max_width:
             processed_file = thumbnail(post.image.file, max_width, max_width)
-            # processed_file = square_image(post.image.file, max_width)
+            # processed_file = square_image(함post.image.file, max_width)
             post.image.save(post.image.name, File(processed_file))
 pre_save.connect(pre_on_post_save, sender=Post)
 
@@ -64,6 +73,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Post)
     message = models.TextField()
     author = models.CharField(max_length=20)
+    Jall = models.ImageField(blank = True)
 
 class Contact(models.Model):
     name = models.CharField(max_length = 20)
