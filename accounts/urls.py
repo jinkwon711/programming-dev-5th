@@ -6,5 +6,5 @@ from . import views
 
 urlpatterns =[
     url(r'^register/$', views.register, name ="register" ),
-    url(r'^login/$', login, name = 'login', kwargs={'template_name':'accounts/login.html'}),
+    url(r'^login/$', views.Mylogin, name = 'login'),
 ]
