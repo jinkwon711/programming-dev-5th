@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'^$', lambda request: redirect('/blog/')),
     # blog
     url(r'^blog/', include('blog.urls', namespace='blog')),
+    # login
+    url(r'^accounts/', include('accounts.urls')),
 
     # pokemon
     url(r'^pokemon_main/$', pokemon_views.pokemon_main),
@@ -36,6 +38,7 @@ urlpatterns = [
     url(r'^capture/(?P<pk>\d+)/$', pokemon_views.capture_detail),
     url(r'^place/$', pokemon_views.place_list),
     url(r'^place/(?P<pk>\d+)/$', pokemon_views.place_detail),
+
 
     # url(r'^zipcode_exist/$', views.zipcode_exist, name= 'zipcodecheck'),
 
